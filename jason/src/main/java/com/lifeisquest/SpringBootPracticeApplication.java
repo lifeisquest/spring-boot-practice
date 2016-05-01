@@ -18,6 +18,7 @@ import org.springframework.context.annotation.Configuration;
 public class SpringBootPracticeApplication {
 
   public static void main(String[] args) {
+    MDC.put("user", "Jason");
     SpringApplication app = new SpringApplication(SpringBootPracticeApplication.class);
 //    app.setAdditionalProfiles("prod");
     app.run(args);

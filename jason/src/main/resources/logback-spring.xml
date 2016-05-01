@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <include resource="org/springframework/boot/logging/logback/base.xml"/>
+
+    <appender name="LOGFILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <append>true</append>
+        <File>practice.log</File>
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <pattern>%d %5p [%t][%X{sessionId}][%X{username}][%-55logger{55}] %m [%X{requestUrl}]%n</pattern>
+        </layout>
+        <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+            <FileNamePattern>practice%i.log</FileNamePattern>
+            <maxIndex>50</maxIndex>
+        </rollingPolicy>
+        <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+            <MaxFileSize>4096KB</MaxFileSize>
+        </triggeringPolicy>
+    </appender>
+
+    <root>
+        <level value="WARN"/>
+        <appender-ref ref="LOGFILE"/>
+        <appender-ref ref="CONSOLE"/>
+    </root>
+
+    <springProfile name="dev">
+        <logger name="com.lifeisquest">
+            <level value="DEBUG"/>
+        </logger>
+    </springProfile>
+
+    <springProfile name="prod">
+        <logger name="com.lifeisquest">
+            <level value="INFO"/>
+        </logger>
+    </springProfile>
+</configuration>

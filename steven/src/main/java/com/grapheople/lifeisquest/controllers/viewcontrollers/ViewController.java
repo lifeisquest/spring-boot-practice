@@ -34,4 +34,23 @@ public class ViewController {
     return userRepository.findAll();
   }
 
+  @RequestMapping("/home")
+  public String getHome(){
+    return "home";
+  }
+
+  @RequestMapping("/")
+  public String getRoot(){
+    return "home";
+  }
+
+  @RequestMapping("/hello")
+  public String getHello(){
+    return "hello";
+  }
+
+  @RequestMapping("/login")
+  public String getLogin(){
+    return "login";
+  }
 }

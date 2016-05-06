@@ -23,7 +23,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.context.WebApplicationContext;
 
-import static org.hamcrest.Matchers.containsString;
+import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertThat;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.*;
@@ -84,7 +84,8 @@ public class AppControllerTest {
   @Test
   public void getAppUrl() throws Exception {
     this.mockMvc.perform(get("/api/app/url").accept(MediaType.APPLICATION_JSON_UTF8).contentType(MediaType.APPLICATION_JSON_UTF8))
-        .andDo(print());
+        .andDo(print())
+        .andExpect(jsonPath("$.data").value(notNullValue()));
   }
 
   @Test
